@@ -100,6 +100,11 @@ double EvaluateParentheses(string Expression) {
                     ExpressionElement.push_back(number);
                     number.clear();
                 }
+                    
+                else {
+                    cout << "Error!\n";
+                    return -1;
+                }
                 
                 ExpressionElement.push_back(string(1, c));
             }
@@ -112,6 +117,11 @@ double EvaluateParentheses(string Expression) {
         
         if (!number.empty()) 
             ExpressionElement.push_back(number);
+        
+        else {
+            cout << "Error!\n";
+            return -1;
+        }
         
         double subResult = PerformCalculation(ExpressionElement);
         Expression.replace(Begin, End - Begin + 1, to_string(subResult));
@@ -136,7 +146,10 @@ double EvaluateParentheses(string Expression) {
                 number.clear();
             
             }
-            
+            else {
+                cout << "Error!\n";
+                return -1;
+            }
             ExpressionElement.push_back(string(1, c));
         }
         
@@ -149,6 +162,11 @@ double EvaluateParentheses(string Expression) {
     
     if (!number.empty()) 
         ExpressionElement.push_back(number);
+    
+    else {
+        cout << "Error!\n";
+        return -1;
+    }
     
     return PerformCalculation(ExpressionElement);
 }
