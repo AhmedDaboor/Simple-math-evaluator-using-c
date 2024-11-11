@@ -8,6 +8,11 @@ using namespace std;
 
 const string FileName = "inputExpression.txt";
 
+void displayError(string txt = "Unvalid expression ...!") {
+    cout << txt << endl;
+    exit(EXIT_FAILURE);
+}
+
 bool isArithmeticOperator(char c) {
     
     return c == '*' || c == '/' || c == '+' || c == '-';
@@ -74,8 +79,7 @@ double EvaluateParentheses(string Expression) {
         size_t End = Expression.find(')', Begin);
         
         if (Begin == string::npos || End == string::npos) {
-            cout << "Error!\n";
-            return -1;
+            displayError();
         }
 
 
@@ -102,16 +106,14 @@ double EvaluateParentheses(string Expression) {
                 }
                 
                 else {
-                    cout << "Error!\n";
-                    return -1;
+                    displayError();
                 }
 
                 ExpressionElement.push_back(string(1, c));
             }
             
             else {
-                cout << "Error!\n";
-                return -1;
+                displayError();
             }
         }
         
@@ -119,8 +121,7 @@ double EvaluateParentheses(string Expression) {
             ExpressionElement.push_back(number);
         
         else {
-            cout << "Error!\n";
-            return -1;
+            displayError();
         }
 
         double subResult = PerformCalculation(ExpressionElement);
@@ -145,21 +146,16 @@ double EvaluateParentheses(string Expression) {
                 
                 ExpressionElement.push_back(number);
                 number.clear();
-            
             }
             
             else {
-                cout << "Error!\n";
-                return -1;
+                displayError();
             }
-
             ExpressionElement.push_back(string(1, c));
         }
         
         else {
-            
-            cout << "Error!\n";
-            return -1;
+            displayError();
         }
     }
     
@@ -167,8 +163,7 @@ double EvaluateParentheses(string Expression) {
         ExpressionElement.push_back(number);
     
     else {
-        cout << "Error!\n";
-        return -1;
+        displayError();
     }
 
     return PerformCalculation(ExpressionElement);
@@ -200,9 +195,7 @@ void start() {
 
         result = EvaluateParentheses(exp);
 
-        if (result != -1)
             cout << "Result: " << result << endl;
-
     }
 
     cin.get();
